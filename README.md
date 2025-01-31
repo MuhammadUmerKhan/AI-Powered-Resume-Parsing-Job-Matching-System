@@ -69,9 +69,35 @@ Explore profound insights and analytics gained from our extensive dataset. Uncov
 
 ## Usage Instructions 🏁
 
-### Getting Started 🚀
+## 🚀 Getting Started  
 
-- **Clone the Repository** 📥
+To set up this project locally:  
 
-  ```bash
-  git clone https://github.com/MuhammadUmerKhan/AI-Powered-Resume-Parser.git
+1. **Clone the repository**:  
+   ```bash  
+   git clone https://github.com/MuhammadUmerKhan/-AI-Powered-Resume-Parser---Job-Matcher.git
+   ```
+
+2. **Install the required packages**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the application**:
+    ```bash
+    streamlit run resume_parser.py
+    ```
+
+---  
+
+## 🔄 Prerequisites  
+- Python 3.x
+- Required packages are listed in requirements.txt.
+
+---  
+
+## 📚 Acknowledgments  
+
+- **Datasets:**  
+   - [Resume Dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset).
+   - [Job Description Dataset](https://www.kaggle.com/datasets/kshitizregmi/jobs-and-job-description).
