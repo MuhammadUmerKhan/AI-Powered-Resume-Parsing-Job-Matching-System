@@ -6,13 +6,16 @@ In the fast-paced world of recruitment, manually sifting through resumes can be 
 
 This repository contains the code, model, and tools necessary for building a state-of-the-art resume parser, capable of extracting personal information, skills, education, experience, and other key elements from resumes in various formats. 📂📝
 
-## Table of Contents 📋
-- [Problem Statement](#problem-statement)
-- [Methodology](#methodology)
-- [Technologies Used](#technologies-used)
-- [Usage Instructions](#usage-instructions)
-- [Running the Project](#running-the-project)
-- [License](#license)
+
+## 📚 Table of Contents  
+- [🔍 Overview](#-overview)  
+- [🔧 Project Structure](#-project-structure)  
+- [💻 Technologies Used](#-technologies-used)  
+- [✔️ Current Work](#-current-work)  
+- [🎯 Planned Future Enhancements](#-planned-future-enhancements)  
+- [🚀 Getting Started](#-getting-started)  
+- [🔄 Prerequisites](#-prerequisites)  
+- [📚 Acknowledgments](#-acknowledgments)  
 
 ---
 
@@ -43,7 +46,7 @@ By using this tool, the time spent on screening resumes can be drastically reduc
 
 ---
 
-## Data Insights
+## Data Insights 📊
 
 Explore profound insights and analytics gained from our extensive dataset. Uncover a deeper understanding of customer behaviors, patterns in service usage, and the pivotal factors influencing churn dynamics.
 
@@ -62,7 +65,37 @@ Explore profound insights and analytics gained from our extensive dataset. Uncov
 - **SBERT** 🤖 for semantic textual similarity (job title matching)
 - **spaCy** 📚 for NLP tasks like tokenization, named entity recognition, and lemmatization
 - **Pandas** 📊 for data manipulation and analysis
-- **Regular Expressions** 🧩 for extracting structured data and removing some irrelevent texts
+- **Regular Expressions** 🧩 for extracting structured data and removing irrelevant text
+
+---
+
+## Current Work 🛠️
+
+Currently, the AI-powered Resume Parser is designed to:
+- Parse resumes in multiple formats (PDF, DOCX, TXT) and extract key features like name, contact details, skills, and experience. 📝
+- Match resumes to job descriptions by categorizing resumes based on job titles using SBERT-based semantic similarity. 🧠
+- Provide a web interface using Streamlit for easy interaction. 🌐
+
+The project has been successfully deployed as a **Streamlit app**, making it easy for recruiters to upload resumes and obtain relevant extracted information. The model is fine-tuned to handle different resume formats and provides job title matching capabilities.
+
+---
+
+## Planned Future Enhancements 🔮
+
+- **Multilingual Support:** 🌍  
+  Enable the parser to handle resumes in multiple languages to cater to a broader range of users.
+
+- **Advanced Resume Scoring:** 🏆  
+  Implement a scoring system that evaluates the relevance of a resume to a job description, helping recruiters prioritize candidates more effectively.
+
+- **Expanded Feature Extraction:** 🧩  
+  Extract more detailed features from resumes, such as achievements, certifications, and hobbies, to provide a more comprehensive analysis.
+
+- **Integration with ATS (Applicant Tracking Systems):** 🔗  
+  Integrate the resume parser with popular ATS platforms to allow for seamless resume processing in recruitment pipelines.
+
+- **Model Improvements:** 📈  
+  Continuously improve the model’s accuracy by training it on more diverse datasets, including resumes from different industries and regions.
 
 ---
 
