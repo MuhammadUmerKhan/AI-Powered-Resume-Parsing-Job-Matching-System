@@ -35,36 +35,24 @@ By using this tool, the time spent on screening resumes can be drastically reduc
    - Performed tasks such as tokenization, stop word removal, stemming, and lemmatization.
    - Cleaned and standardized the text to ensure accurate extraction.
 
-3. **Feature Extraction:** 🧠
-   - Extracted key features from resumes, including:
-     - Name, email, phone number
-     - Skills, experience, education
-     - Job titles, company names, dates
-   - Used regular expressions and NLP techniques to identify and extract relevant information.
-
-4. **Resume Categorization:** 🗂️
+3. **Resume Categorization:** 🗂️
    - Categorized resumes based on job titles using semantic similarity scoring (SBERT).
    - Developed a job title classification function for automated categorization of resumes into broad job categories.
 
-5. **Model Deployment:** 🚀
-   - The model was deployed as a Streamlit app, providing an intuitive interface for resume parsing and job matching.
+4. **Model Deployment:** 🚀
+   - The model was deployed as a [Streamlit app](), providing an intuitive interface for resume parsing and job matching.
 
 ---
 
-## Features Extracted 📝
+## Data Insights
 
-This AI-powered Resume Parser is capable of extracting the following features from resumes:
+Explore profound insights and analytics gained from our extensive dataset. Uncover a deeper understanding of customer behaviors, patterns in service usage, and the pivotal factors influencing churn dynamics.
 
-| Feature            | Description                                 |
-|--------------------|---------------------------------------------|
-| **Name**           | Candidate's full name 👤                    |
-| **Email**          | Candidate's email address 📧                |
-| **Phone Number**   | Contact number 📞                           |
-| **Skills**         | A list of technical and soft skills 🛠️      |
-| **Experience**     | Work history with job titles and dates 💼   |
-| **Education**      | Educational background and degrees 🎓      |
-| **Certifications** | Relevant certifications, if any 🏅         |
-| **Job Titles**     | Job positions and companies worked at 🏢    |
+| Feature                                      | Visualization                                                                                       |
+|----------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Category Distribution                        | ![Category distribution](https://github.com/MuhammadUmerKhan/-AI-Powered-Resume-Parser---Job-Matcher/blob/main/imgs/category_distribution.png)   |
+| WordCloud Resume                             | ![WordCloud Resume](https://github.com/MuhammadUmerKhan/-AI-Powered-Resume-Parser---Job-Matcher/blob/main/imgs/wordcloud_resume.png)  |
+| WordCloud Job Description                    | ![WordCloud Job Description](https://github.com/MuhammadUmerKhan/-AI-Powered-Resume-Parser---Job-Matcher/blob/main/imgs/wordcloud_job.png)   |
 
 ---
 
@@ -75,7 +63,7 @@ This AI-powered Resume Parser is capable of extracting the following features fr
 - **SBERT** 🤖 for semantic textual similarity (job title matching)
 - **spaCy** 📚 for NLP tasks like tokenization, named entity recognition, and lemmatization
 - **Pandas** 📊 for data manipulation and analysis
-- **Regular Expressions** 🧩 for extracting structured data like phone numbers and emails
+- **Regular Expressions** 🧩 for extracting structured data and removing some irrelevent texts
 
 ---
 
