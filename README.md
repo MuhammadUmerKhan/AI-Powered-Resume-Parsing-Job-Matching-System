@@ -9,7 +9,6 @@ This repository contains the code, model, and tools necessary for building a sta
 ## Table of Contents 📋
 - [Problem Statement](#problem-statement)
 - [Methodology](#methodology)
-- [Features Extracted](#features-extracted)
 - [Technologies Used](#technologies-used)
 - [Usage Instructions](#usage-instructions)
 - [Running the Project](#running-the-project)
