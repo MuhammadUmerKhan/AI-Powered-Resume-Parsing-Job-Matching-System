@@ -189,12 +189,13 @@ with tab1:
     st.markdown("""
         <div class="content">
             <ul>
-                <li>The <a href = "https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset"> dataset </a> consists of <span class="highlight"> different resume, collected from Kaggle</span>.</li>
-                <li>The <a href = "https://www.kaggle.com/datasets/kshitizregmi/jobs-and-job-description"> dataset </a> Data is sourced from <span class="highlight">public job postings and resume repositories</span>, providing a diverse collection of job descriptions.</li>
-                <li>This dataset is crucial for training the model to understand the semantics of job titles, experience, and skills.</li>
+                <li><span class="highlight">Resume Data:</span> The <a href="https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset">dataset</a> consists of various resumes, collected from Kaggle.</li>
+                <li><span class="highlight">Job Description Data:</span> The <a href="https://www.kaggle.com/datasets/kshitizregmi/jobs-and-job-description">dataset</a> is sourced from <span class="highlight">public job postings and resume repositories</span>, providing a diverse collection of job descriptions.</li>
+                <li>This datasets is crucial for training the model to understand the semantics of job titles, experience, and skills.</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
+
 
 
     # Steps Performed
