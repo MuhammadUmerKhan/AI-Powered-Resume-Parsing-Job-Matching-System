@@ -79,13 +79,13 @@ st.markdown("""
         .main-title {
             font-size: 2.5em;
             font-weight: bold;
-            color: #964B00;
+            color: #808080;
             text-align: center;
             margin-bottom: 20px;
         }
         .section-title {
             font-size: 1.8em;
-            color: #964B00;
+            color: #808080;
             font-weight: bold;
             margin-top: 30px;
             text-align: left;
@@ -179,6 +179,8 @@ with tab1:
         <div class="content">
             This project focuses on developing an <span class="highlight">AI-powered resume parser</span> that matches resumes 
             to job descriptions based on <span class="highlight">semantic similarity</span>. 
+            The system extracts key information from resumes (such as contact details, skills, experience) 
+            and compares them to job descriptions to assess the compatibility between the two. 
         </div>
     """, unsafe_allow_html=True)
 
@@ -186,22 +188,26 @@ with tab1:
     st.markdown('<div class="section-title">📊 Dataset Information</div>', unsafe_allow_html=True)
     st.markdown("""
         <div class="content">
-            - The dataset consists of <span class="highlight">159,804 resume-job description pairs</span>.
-            - Data is sourced from <span class="highlight">public job postings and resume repositories</span>.
+            <ul>
+                <li>The <a href = "https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset"> dataset </a> consists of <span class="highlight"> different resume, collected from Kaggle</span>.</li>
+                <li>The <a href = "https://www.kaggle.com/datasets/kshitizregmi/jobs-and-job-description"> dataset </a> Data is sourced from <span class="highlight">public job postings and resume repositories</span>, providing a diverse collection of job descriptions.</li>
+                <li>This dataset is crucial for training the model to understand the semantics of job titles, experience, and skills.</li>
+            </ul>
         </div>
     """, unsafe_allow_html=True)
+
 
     # Steps Performed
     st.markdown('<div class="section-title">🔬 Steps Performed</div>', unsafe_allow_html=True)
     st.markdown("""
         <div class="content">
             <ul>
-                <li>🚀 <b>Data Preprocessing:</b> Cleaned textual data (removed special characters, stopwords, etc.), and applied <b>lemmatization</b>.</li>
-                <li>📌 <b>Feature Extraction:</b> Used <b>SBERT embeddings</b> for extracting semantic information.</li>
-                <li>📑 <b>Job Categorization:</b> Implemented an <b>NLP-based job title classification system</b>.</li>
-                <li>📈 <b>Semantic Matching:</b> Measured compatibility using <b>SBERT embeddings & Cosine Similarity</b>.</li>
-                <li>🌐 <b>Interactive UI:</b> Built an intuitive <b>Streamlit</b> application.</li>
-                <li>🚀 <b>Deployment:</b> Designed a real-time resume analysis tool.</li>
+                <li>🚀 <b>Data Preprocessing:</b> Cleaned textual data (removed special characters, stopwords, etc.), and applied <b>lemmatization</b> to reduce words to their base forms.</li>
+                <li>📌 <b>Feature Extraction:</b> Used <b>SBERT embeddings</b> for extracting semantic information from resumes and job descriptions, allowing the model to understand context and intent.</li>
+                <li>📑 <b>Job Categorization:</b> Implemented an <b>NLP-based job title classification system</b> to categorize resumes into broad job categories, improving the matching accuracy.</li>
+                <li>📈 <b>Semantic Matching:</b> Measured compatibility between the resume and job description using <b>SBERT embeddings & Cosine Similarity</b>, providing an accurate measure of similarity.</li>
+                <li>🌐 <b>Interactive UI:</b> Built an intuitive <b>Streamlit</b> application to allow users to upload resumes and job descriptions and instantly see compatibility scores.</li>
+                <li>🚀 <b>Deployment:</b> Designed and deployed a real-time resume analysis tool with <b>Streamlit</b> for easy access and use.</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
@@ -211,10 +217,22 @@ with tab1:
     st.markdown("""
         <div class="content">
             <ul>
-                <li><span class="highlight">🔤 Languages & Libraries:</span> Python, NumPy, Pandas, Matplotlib, Streamlit, TensorFlow, SBERT.</li>
-                <li><span class="highlight">⚙️ Approaches:</span> Natural Language Processing (NLP), Text Preprocessing, Semantic Textual Similarity.</li>
-                <li><span class="highlight">📊 Machine Learning Models:</span> SBERT (Sentence-BERT), Cosine Similarity for semantic matching.</li>
-                <li><span class="highlight">🌐 Deployment:</span> Streamlit for building an interactive, user-friendly web-based system.</li>
+                <li><span class="highlight">🔤 Languages & Libraries:</span> Python, NumPy, Pandas, Matplotlib, Streamlit, TensorFlow, SBERT (Sentence-BERT).</li>
+                <li><span class="highlight">⚙️ Approaches:</span> Natural Language Processing (NLP), Text Preprocessing, Semantic Textual Similarity, and Cosine Similarity for comparing embeddings.</li>
+                <li><span class="highlight">📊 Machine Learning Models:</span> SBERT (Sentence-BERT) for extracting high-quality, dense text embeddings; Cosine Similarity for calculating semantic matching.</li>
+                <li><span class="highlight">🌐 Deployment:</span> Streamlit for building an interactive, user-friendly web-based system for resume parsing and matching.</li>
+            </ul>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # Data Visualizations (WordClouds, Category Distribution)
+    st.markdown('<div class="section-title">📊 Data Insights & Visualizations</div>', unsafe_allow_html=True)
+    st.markdown("""
+        <div class="content">
+            Here are some insights from the dataset that provide a better understanding of the data and its distribution:
+            <ul>
+                <li>💡 <b>Word Cloud of Resume Content:</b> Shows the most frequent words in the resumes that help identify common skills and experiences.</li>
+                <li>💼 <b>Category Distribution:</b> Illustrates how resumes are categorized into various job titles, helping improve the classifier's performance.</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
@@ -253,7 +271,7 @@ with tab2:
                     score_text = "ATS Score: 👎"
 
                 st.markdown(f'''
-                    <div style="font-size: 2em; font-weight: bold; color: #964B00; text-align: center; display: inline-block;">
+                    <div style="font-size: 2em; font-weight: bold; color: #808080; text-align: center; display: inline-block;">
                         {score_text}
                     </div>
                     <div style="font-size: 2em; font-weight: bold; color: {score_color}; text-align: center; display: inline-block; padding-left: 10px;">
