@@ -42,7 +42,7 @@ By using this tool, the time spent on screening resumes can be drastically reduc
    - Developed a job title classification function for automated categorization of resumes into broad job categories.
 
 4. **Model Deployment:** 🚀
-   - The model was deployed as a [Streamlit app](), providing an intuitive interface for resume parsing and job matching.
+   - The model was deployed as a [Streamlit app](https://ai-powered-resume-parser.streamlit.app/), providing an intuitive interface for resume parsing and job matching.
 
 ---
 
