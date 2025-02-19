@@ -3,16 +3,23 @@ import docx
 import streamlit as st
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import PromptTemplate
+from langchain_groq import ChatGroq
 import spacy
 import re
+import pandas as pd
+import json
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 nlp = spacy.load('en_core_web_sm', disable=['ner', 'parser', 'textcat'])
+groq_api_key = os.getenv('GROK_CLOUD_API_KEY_LLAMA')
 
+# Preprocessing function
 def preprocessor(text):
-    # Use only the necessary components to speed up processing
     with nlp.disable_pipes('ner', 'parser', 'textcat'):
         text = re.sub(r'http\S+', ' ', text)  # Remove URLs
         text = re.sub(r'RT|cc', ' ', text)  # Remove RT and cc
@@ -31,10 +38,7 @@ def preprocessor(text):
 
     return ' '.join(tokens)
 
-def compute_similarity(resume_embeddings, job_embeddings):
-    similarity_scores = cosine_similarity(resume_embeddings, job_embeddings)
-    return np.array(similarity_scores)
-
+# Function to extract text from uploaded file
 def extract_text_from_file(uploaded_file):
     if uploaded_file.type == "application/pdf":
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
@@ -59,7 +63,12 @@ def generate_wordcloud(text):
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis("off")
     st.pyplot(fig)
-    
+
+def compute_similarity(resume_embeddings, job_embeddings):
+    similarity_scores = cosine_similarity(resume_embeddings, job_embeddings)
+    return np.array(similarity_scores)
+
+
 sbert_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 # Streamlit page configuration
@@ -157,7 +166,7 @@ st.markdown("""
 st.markdown('<div class="main-title">💼 AI Powered Resume Parser 💼</div>', unsafe_allow_html=True)
 
 # Tab layout
-tab1, tab2 = st.tabs(["🏠 Dashboard", "📝 Resume Parsing"])
+tab1, tab2, tab3 = st.tabs(["🏠 Dashboard", "📝 Resume Parsing", "Strengthen Your Resume"])
 
 
 # Tab content
@@ -288,10 +297,72 @@ with tab2:
                 st.warning("⚠️ Please upload a resume file before proceeding.")
             if not job_description:
                 st.warning("⚠️ Please enter a job description before proceeding.")
+with tab3:
+    llm = ChatGroq(
+    temperature=0, 
+    groq_api_key=groq_api_key, 
+    model_name="llama-3.3-70b-versatile"
+    )
+    prompt_extract = PromptTemplate.from_template(
+        """
+        ### JOB DESCRIPTION:
+        {job_desc}
 
-# if uploaded_file:
-#     resume_text = extract_text_from_file(uploaded_file)
-#     if resume_text and st.button("📊 Generate WordCloud"):
-#         generate_wordcloud(preprocessor(resume_text))
+        ### RESUME:
+        {resume}
+
+        ### TASK:
+        Extract skills from the job description that are NOT mentioned in the resume.
+        Return them as a JSON list with no extra text.
+
+        Only return the valid JSON.
+        ### VALID JSON (NO PREAMBLE):    
+        """
+    )
+    prompt_improvement = PromptTemplate.from_template(
+        """
+        ### MISSING SKILLS:
+        {missing_skills}
+        ### INSTRUCTIONS:
+        Provide actionable bullet points on how to gain these missing skills, including online courses, books, or hands-on experience.
+        ### BULLET POINTS:
+        """
+    )
+    resume_file = st.file_uploader("📄 Upload Resume Here:", type=["txt", "pdf", "docx"])
+    job_description = st.text_area("📄 Enter Job Description Here:", height=200)
+    
+    if st.button("🔍 Improve My Resume"):
+        if resume_file and job_description:
+            resume_content = extract_text_from_file(resume_file)
+            if resume_content:
+                preprocessed_resume = preprocessor(resume_content)
+                preprocessed_job_description = preprocessor(job_description)
+
+                # Extract missing skills
+                chain_extract = prompt_extract | llm 
+                res = chain_extract.invoke(input={'job_desc': preprocessed_job_description, "resume": preprocessed_resume})
+                
+                try:
+                    # Extract the content from AIMessage and parse it as JSON
+                    response_content = res.content  # Extracting content from AIMessage
+                    missing_skills_data = json.loads(response_content)  # Convert JSON string to Python dictionary
+
+                    if missing_skills_data:
+                        # Convert to DataFrame and display
+                        df = pd.DataFrame({"Missing Skills": missing_skills_data})
+                        # st.subheader("🚀 Missing Skills")
+                        # st.dataframe(df)
+                        
+                        chain_improvement = prompt_improvement | llm
+                        improvement_res = chain_improvement.invoke(input={"missing_skills": ", ".join(missing_skills_data)})
+                        
+                        st.subheader("💡 Missig Skills & How to Improve These Skills")
+                        response_content = improvement_res.content
+                        st.write(response_content)
+                    else:
+                        st.success("✅ Your resume matches all required skills!")
+
+                except json.JSONDecodeError:
+                    st.error("⚠️ Unexpected response format. Please try again.")
         
 st.markdown('<div class="footer">© 2025 AI Powered Resume Parser. All rights reserved.</div>', unsafe_allow_html=True)
