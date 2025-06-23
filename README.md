@@ -1,4 +1,4 @@
-# AI-Powered Resume Parser 🤖📝
+# 🤖 MatchPro: Resume Parsing & Job Fit Prediction 📝
 
 ![Resume Parser](https://media.licdn.com/dms/image/v2/D4D12AQGeVOhx27jdqQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1732253495805?e=2147483647&v=beta&t=BNfCukca2GVw7Vhv6QUe2jxW2kxX_-LDH_TLBSCiozE)
 
